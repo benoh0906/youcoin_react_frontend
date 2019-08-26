@@ -48,7 +48,7 @@ class App extends Component {
   editUser = async(data)=>{
     try{
       console.log(data,'<-edit data')
-      const editResponse = await fetch(`http://localhost:8000/user/${this.state.id}`,{
+      const editResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${this.state.id}`,{
         method:"PUT",
         credentials:"include",
         body:data,
@@ -104,7 +104,7 @@ class App extends Component {
   try {
     console.log(loginInfo,"<=login info")
     console.log(process.env.REACT_APP_BACKEND_URL,'<-.env')
-    const loginResponse = await fetch(`http://localhost:8000/user/login`, {
+    const loginResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/login`, {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify(loginInfo),
