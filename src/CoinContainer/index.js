@@ -19,6 +19,19 @@ class CoinContainer extends Component {
 
     componentDidMount(){
         this.setState({user: this.props.userInfo.id});
+            const user = JSON.parse(localStorage.getItem("user"))
+    if (user){
+      this.setState({
+
+        id:user.id,
+        username:user.username,
+        profit:user.profit,
+        email:user.email,
+        loading:user.loading
+
+      })
+
+    }
     }
 
     create = async (coinInfo)=>{

@@ -23,7 +23,7 @@ class Header_login extends Component {
             <div>
             <Menu fixed='top' >
               <Container>
-                <Menu.Item as='a' header>
+                <Menu.Item header>
                   <Link to="/"><Image size='small' src={logo} style={{ marginRight: '1.5em' }} /></Link>
                 </Menu.Item>
                     

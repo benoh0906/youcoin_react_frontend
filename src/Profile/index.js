@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {Container, Button, Form, Grid, Header, Image, Message, Card, Icon} from 'semantic-ui-react';
+import {Container, Button, Item, Form, Grid, Header, Image, Message, Card, Icon} from 'semantic-ui-react';
 class Profile extends Component {
     state = {
         id: 0,
@@ -17,23 +17,29 @@ class Profile extends Component {
 
                     <Grid.Column>
                         <Grid.Row>
-                            
-                        </Grid.Row>
-                        <Grid.Row>
                             <Header as='h2' textAlign='center' style={{ marginBottom: '1em' }}>
                                 Profile Page
                             </Header>
-                            Username: {this.props.userInfo.username}
                         </Grid.Row>
+
                         <Grid.Row>
-                            Email: {this.props.userInfo.email}
+                            <Item.Group>
+                                <Item>
+                                    <Item.Content>
+                                        <Item.Header>Username: {this.props.userInfo.username}</Item.Header>
+                                        <Item.Description>
+                                            Email: {this.props.userInfo.email}<br/>
+                                            Profit: {this.props.userInfo.profit}
+                                        </Item.Description>
+                                        <Item.Extra>
+                                        <Button><Link to="/editUser">Edit User Info</Link></Button>
+                                        <Button><Link to="/updatePassword">Update Password</Link></Button>
+                                        </Item.Extra>
+                                    </Item.Content>
+                                </Item>   
+                            </Item.Group>                         
                         </Grid.Row>
-                        <Grid.Row>
-                            Profit: {this.props.userInfo.profit}
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Button><Link to="/editUser">Edit</Link></Button>
-                        </Grid.Row>
+                        
                     </Grid.Column>
 
                 </Grid.Row>

@@ -12,6 +12,7 @@ import Header_login from './Header_login';
 import Header_logout from './Header_logout';
 import Show from './Show'
 import EditUser from './EditUser'
+import UpdatePassword from './UpdatePassword'
 import { async } from 'q';
 
 const My404 =() =>{
@@ -35,26 +36,27 @@ class App extends Component {
     const user = JSON.parse(localStorage.getItem("user"))
     if (user){
       this.setState({
-        username: user.username,
-        email:user.email,
         id:user.id,
-        profit:user.id,
+        username:user.username,
+        profit:user.profit,
+        email:user.email,
         loading:user.loading
       })
 
     }
     console.log(this.state,'<-mounted')
   }
+  
   editUser = async(data)=>{
     try{
       console.log(data,'<-edit data')
       const editResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${this.state.id}`,{
         method:"PUT",
         credentials:"include",
-        body:data,
+        body:JSON.stringify(data),
         headers: {
-          'enctype': 'multipart/form-data'
-       }
+          'Content-Type': 'application/json'
+        }
       })
       const parsedResponse = await editResponse.json();
       console.log(parsedResponse,'<-=edit response')
@@ -68,6 +70,26 @@ class App extends Component {
       console.log(err)
     }
   }
+  updatePassword = async(data)=>{
+    console.log(`${process.env.REACT_APP_BACKEND_URL}/user/pw/${this.state.id}`,'<-fetching pw')
+    try{
+      const editResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/pw/${this.state.id}`,{
+        method:"PUT",
+        credentials:"include",
+        body:JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const parsedResponse = await editResponse.json();
+      return parsedResponse
+
+    } catch(err){
+      console.log(err)
+    }
+  
+  }
+
   register = async (data) => {
     try {
       console.log(data,'<=data')
@@ -99,6 +121,20 @@ class App extends Component {
      console.log(err)
    }
  }
+//  updateProfit = async (e)=>{
+//    try{
+//      console.log('hitupdateprofit')
+//     const profitResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/profit/${e}`)
+//     const parsedResponse = await profitResponse.json();
+//     this.setState({
+//       profit: parsedResponse.data
+//     })
+//     console.log(parsedResponse.data,'<updateprofit')
+//     localStorage.setItem("user", this.state)
+//    }catch(err){
+//      console.log(err)
+//    }
+//  }
 
  logIn = async (loginInfo) => {
   try {
@@ -131,11 +167,7 @@ class App extends Component {
 }
   logout = async() =>{
     console.log("logout hit")
-    // const createResponse = await fetch("${process.env.REACT_APP_BACKEND_URL}/api/v1/logout")
-    //       if(createResponse.status!==200){
-    //           throw Error('404 from server')
-    //       }
-    // const parsedResponse = await createResponse.json();
+
     localStorage.clear()
     
     this.setState(()=>{
@@ -164,9 +196,10 @@ class App extends Component {
                   <Route exact path="/register" render={(props) => <Register {...props} register={this.register} /> } />
                   <Route exact path="/profile" render={(props) =>  <Main {...props} userInfo={this.state} />  } />
                   <Route exact path="/create" render={(props) =>  <Main {...props} userInfo={this.state} /> } />
-                  <Route exact path="/wallet" render={(props) =>  <Main {...props} userInfo={this.state} />  } />
+                  <Route exact path="/wallet" render={(props) =>  <Main {...props} userInfo={this.state} /> } />
                   <Route exact path="/show" render={(props) => <Main {...props} userInfo={this.state} /> } />
-                  <Route exact path="/editUser" render={(props) =>  <EditUser {...props} editUser={this.editUser} userInfo={this.state} /> } />
+                  <Route exact path="/editUser" render={(props) =>  <Main {...props} userInfo={this.state} /> } />
+                  <Route exact path="/updatePassword" render={(props) =>  <Main {...props} userInfo={this.state} /> } />
 
                   <Route component={My404} />        
                 </Switch>
@@ -184,9 +217,10 @@ class App extends Component {
                   <Route exact path="/register" render={(props) => <Register {...props} register={this.register} /> } />
                   <Route exact path="/profile" render={(props) =>  <Profile {...props} userInfo={this.state}/> } />
                   <Route exact path="/create" render={(props) =>  <CoinContainer {...props} userInfo={this.state} /> } />
-                  <Route exact path="/wallet" render={(props) =>  <Wallet {...props} userInfo={this.state} /> } />
+                  <Route exact path="/wallet" render={(props) =>  <Wallet {...props}   userInfo={this.state} /> } />
                   <Route exact path="/show" render={(props) =>  <Show {...props} userInfo={this.state} /> } />
                   <Route exact path="/editUser" render={(props) =>  <EditUser {...props} editUser={this.editUser} userInfo={this.state} /> } />
+                  <Route exact path="/updatePassword" render={(props) =>  <UpdatePassword {...props} logout={this.logout} updatePassword={this.updatePassword} userInfo={this.state} /> } />
 
                   <Route component={My404} />        
                 </Switch>

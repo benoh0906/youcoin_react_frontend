@@ -16,7 +16,7 @@ class CreateCoin extends Component{
     
         createCoin.then((data) => {
           if(data.status.message === 'Success'){
-            this.props.history.push('/create')
+            this.props.history.push('/wallet')
           } else {
             console.log(data, this.props)
           }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Message, Segment} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-class Register extends Component{
+class EditUser extends Component{
     state={
         username: this.props.userInfo.username,
         email: this.props.userInfo.email,
@@ -35,24 +35,19 @@ class Register extends Component{
     handleSubmit = async (e) =>{
         e.preventDefault();
 
-        
-        console.log(this.state,'<-edit this.state')
-        const data = new FormData();
-        data.append('username', this.state.username);
-        data.append('email', this.state.email);
-        data.append('password', this.state.password);
-        console.log(data,'<-edit data handle')
-        const editCall = this.props.editUser(data);
+        console.log(this.state,'<-edit user state')
+        const editUser = this.props.editUser(this.state);
+  
+      editUser.then((data) => {
+        if(data.status.message === 'Success'){
+          this.props.history.push('/profile')
+        } else {
+          console.log(data, this.props)
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
 
-        editCall.then((data) => {
-            console.log(data,'<-data')
-            console.log(typeof(data),'<-dataType')
-              if(data.status.message === "Success"){
-                this.props.history.push('/profile')
-              } else {
-                console.log(data, ' this should have an error message? How could you display that on the screen')
-              }
-          })
 
 
     }
@@ -86,4 +81,4 @@ class Register extends Component{
 }
 
 
-export default Register;
+export default EditUser;
