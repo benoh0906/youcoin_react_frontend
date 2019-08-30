@@ -8,6 +8,22 @@ class Profile extends Component {
         username: "",
         profit:0
     }
+    updateProfit = async ()=>{
+        try{
+            console.log('hitupdateprofit')
+            const profitResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/profit/${this.props.userInfo.id}`)
+            const parsedResponse = await profitResponse.json();
+            this.setState({
+            profit: parsedResponse.data
+            })
+            console.log(parsedResponse.data,'<updateprofit')
+        }catch(err){
+            console.log(err)
+        }
+    }
+    componentDidMount(){
+        this.updateProfit()
+    }
     
     render(){
         return(
@@ -29,7 +45,7 @@ class Profile extends Component {
                                         <Item.Header>Username: {this.props.userInfo.username}</Item.Header>
                                         <Item.Description>
                                             Email: {this.props.userInfo.email}<br/>
-                                            Profit: {this.props.userInfo.profit}
+                                            Profit: {this.state.profit}
                                         </Item.Description>
                                         <Item.Extra>
                                         <Button><Link to="/editUser">Edit User Info</Link></Button>
