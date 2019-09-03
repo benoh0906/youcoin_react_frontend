@@ -10,13 +10,11 @@ class Profile extends Component {
     }
     updateProfit = async ()=>{
         try{
-            console.log('hitupdateprofit')
             const profitResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/profit/${this.props.userInfo.id}`)
             const parsedResponse = await profitResponse.json();
             this.setState({
             profit: parsedResponse.data
             })
-            console.log(parsedResponse.data,'<updateprofit')
         }catch(err){
             console.log(err)
         }

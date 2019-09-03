@@ -20,22 +20,16 @@ class EditUser extends Component{
         })
 
     }
-    console.log(this.state,'<-mounted')
   }
     
     
     handleChange = (e)=>{
-        console.log(e.target,"<-e.target")
-        console.log(e.target.name,'<-e.target.name')
-        console.log(e.target.value,'<-e.target.value')
-        
         this.setState({[e.target.name]: e.target.value})
     }
 
     handleSubmit = async (e) =>{
         e.preventDefault();
 
-        console.log(this.state,'<-edit user state')
         const editUser = this.props.editUser(this.state);
   
       editUser.then((data) => {

@@ -9,10 +9,7 @@ class Register extends Component{
         email: ""
     }
     handleChange = (e)=>{
-        console.log(e.target,"<-e.target")
-        console.log(e.target.name,'<-e.target.name')
-        console.log(e.target.value,'<-e.target.value')
-        
+
         this.setState({[e.target.name]: e.target.value})
     }
 
@@ -20,7 +17,6 @@ class Register extends Component{
         e.preventDefault();
 
         
-        console.log(this.state,'<-this.state')
         const data = new FormData();
         data.append('username', this.state.username);
         data.append('password', this.state.password);
@@ -29,8 +25,7 @@ class Register extends Component{
         const registerCall = this.props.register(data);
 
         registerCall.then((data) => {
-            console.log(data,'<-data')
-            console.log(typeof(data),'<-dataType')
+
               if(data.status.message === "Success"){
                 this.props.history.push('/profile')
               } else {

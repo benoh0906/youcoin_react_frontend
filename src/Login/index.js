@@ -11,12 +11,10 @@ class Login extends Component {
 
     handleChange = (e) => {
       this.setState({[e.target.name]: e.target.value});
-      console.log(this.state,"this.state for login")
     }
 
     handleSubmit = async (e) => {
       e.preventDefault();
-        console.log(this.state,'<-login state')
       const login = this.props.logIn(this.state);
   
       login.then((data) => {

@@ -34,13 +34,10 @@ class Main extends Component {
             if(createResponse.status!==200){
                 throw Error('404 from server')
             }
-            console.log(createResponse)
 
             const parsedResponse = await createResponse.json();
-            console.log(parsedResponse,'<-parsedresponse')
 
             this.setState({coins: parsedResponse.data});
-            console.log(this.state.coins,'<-this.state.coins')
 
             return parsedResponse
         }catch(err){

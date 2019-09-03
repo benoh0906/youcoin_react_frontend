@@ -44,12 +44,10 @@ class App extends Component {
       })
 
     }
-    console.log(this.state,'<-mounted')
   }
   
   editUser = async(data)=>{
     try{
-      console.log(data,'<-edit data')
       const editResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${this.state.id}`,{
         method:"PUT",
         credentials:"include",
@@ -59,7 +57,6 @@ class App extends Component {
         }
       })
       const parsedResponse = await editResponse.json();
-      console.log(parsedResponse,'<-=edit response')
       localStorage.setItem("user", JSON.stringify(parsedResponse.data))
       this.setState({ 
         ...parsedResponse.data,
@@ -71,7 +68,6 @@ class App extends Component {
     }
   }
   updatePassword = async(data)=>{
-    console.log(`${process.env.REACT_APP_BACKEND_URL}/user/pw/${this.state.id}`,'<-fetching pw')
     try{
       const editResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/pw/${this.state.id}`,{
         method:"PUT",
@@ -92,8 +88,7 @@ class App extends Component {
 
   register = async (data) => {
     try {
-      console.log(data,'<=data')
-      console.log(process.enc,'<-process env')
+
       const registerResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/register`, {
         method: 'POST',
         credentials: 'include',// on every request we have to send the cookie
@@ -104,11 +99,9 @@ class App extends Component {
        }
      })
 
-     console.log(registerResponse,'<=registerResponse')
 
      const parsedResponse = await registerResponse.json();
     localStorage.setItem("user", JSON.stringify(parsedResponse.data))
-     console.log(parsedResponse, "<=parsedResponse")
 
 
      this.setState({ 
@@ -121,25 +114,10 @@ class App extends Component {
      console.log(err)
    }
  }
-//  updateProfit = async (e)=>{
-//    try{
-//      console.log('hitupdateprofit')
-//     const profitResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/profit/${e}`)
-//     const parsedResponse = await profitResponse.json();
-//     this.setState({
-//       profit: parsedResponse.data
-//     })
-//     console.log(parsedResponse.data,'<updateprofit')
-//     localStorage.setItem("user", this.state)
-//    }catch(err){
-//      console.log(err)
-//    }
-//  }
 
  logIn = async (loginInfo) => {
   try {
-    console.log(loginInfo,"<=login info")
-    console.log(process.env.REACT_APP_BACKEND_URL,'<-.env')
+
     const loginResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/login`, {
       method: 'POST',
       credentials: 'include',
@@ -158,7 +136,6 @@ class App extends Component {
         loading: false
       }
     })
-    console.log(this.state,"<-app this.state")
     return parsedResponse
 
   } catch (err) {
@@ -166,7 +143,6 @@ class App extends Component {
   }
 }
   logout = async() =>{
-    console.log("logout hit")
 
     localStorage.clear()
     

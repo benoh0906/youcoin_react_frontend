@@ -32,7 +32,6 @@ class showCoin extends Component {
     
     }
     sellCoin = async (e) =>{
-        console.log('hit sellcoin')
         try{
             const createResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/delete/${e}`,{
                 method: 'DELETE',

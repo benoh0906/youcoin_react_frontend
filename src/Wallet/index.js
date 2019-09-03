@@ -13,18 +13,14 @@ class Wallet extends Component{
 
     listCoins = async()=>{
         try{
-            console.log("listcoin mout")
             const createResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/${this.props.userInfo.id}`)
             if(createResponse.status!==200){
                 throw Error('404 from server')
             }
-            console.log(createResponse,'<create response wallet')
 
             const parsedResponse = await createResponse.json();
-            console.log(parsedResponse,'<-parsedresponse')
 
             this.setState({coins: parsedResponse.data});
-            console.log(this.state.coins,'<-this.state.coins')
 
             return parsedResponse
         }catch(err){
@@ -33,7 +29,6 @@ class Wallet extends Component{
         
     }
     sellCoin = async (e) =>{
-        console.log('hit sellcoin')
         try{
             const createResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/delete/${e}`,{
                 method: 'DELETE',
@@ -55,13 +50,11 @@ class Wallet extends Component{
     }
     updateProfit = async ()=>{
     try{
-        console.log('hitupdateprofit')
         const profitResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/profit/${this.props.userInfo.id}`)
         const parsedResponse = await profitResponse.json();
         this.setState({
         profit: parsedResponse.data
         })
-        console.log(parsedResponse.data,'<updateprofit')
     }catch(err){
         console.log(err)
     }

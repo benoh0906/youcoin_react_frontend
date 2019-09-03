@@ -29,16 +29,6 @@ class Header_logout extends Component {
       e.preventDefault();
       const logout = this.props.logout();
       this.props.history.push('/login')
-  
-      // logout.then((data) => {
-      //   if(data.status.message === 'Success'){
-      //     this.props.history.push('/main')
-      //   } else {
-      //     console.log(data, this.props)
-      //   }
-      // }).catch((err) => {
-      //   console.log(err)
-      // })
 
     }
     
