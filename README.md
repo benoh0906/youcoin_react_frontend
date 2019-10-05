@@ -42,7 +42,7 @@ Link to the Backend : [YouCoing Flask Backend] (#https://github.com/benoh0906/yo
 
 To locally install YouCoin, please download sourcescode for the backend.
 
-For the Backend, you must use your own API at 
+For the Backend, you must use your own API.
 
 
 ## Code Examples
