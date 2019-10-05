@@ -18,8 +18,8 @@ class CoinContainer extends Component {
 
 
     componentDidMount(){
-        this.setState({user: this.props.userInfo.id});
-            const user = JSON.parse(localStorage.getItem("user"))
+      this.setState({user: this.props.userInfo.id});
+      const user = JSON.parse(localStorage.getItem("user"))
     if (user){
       this.setState({
 
@@ -35,39 +35,36 @@ class CoinContainer extends Component {
     }
 
     create = async (coinInfo)=>{
-        try {
-            coinInfo["user"]=JSON.parse(localStorage.getItem("user")).id
-            const loginResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/`, {
-              method: 'POST',
-              credentials: 'include',
-              body: JSON.stringify(coinInfo),
-              headers: {
-                'Content-Type': 'application/json'
-              }
-            })
-      
-            const parsedResponse = await loginResponse.json();
-      
-            this.setState(() => {
-              return {
-                ...parsedResponse.data,
-                loading: false
-              }
-            })
-      
-            return parsedResponse
-      
-          } catch (err) {
-            console.log(err)
+      try {
+        coinInfo["user"]=JSON.parse(localStorage.getItem("user")).id
+        const loginResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/`, {
+          method: 'POST',
+          credentials: 'include',
+          body: JSON.stringify(coinInfo),
+          headers: {
+            'Content-Type': 'application/json'
           }
+        })
+  
+        const parsedResponse = await loginResponse.json();
+  
+        this.setState(() => {
+          return {
+            ...parsedResponse.data,
+            loading: false
+          }
+        })
+        return parsedResponse
+      } catch (err) {
+        console.log(err)
+      }
     }
 
     render(){
-        return(
-            <main>
-              <CreateCoin userInfo={this.state} create = {this.create}/>
-              
-            </main>
+      return(
+        <main>
+          <CreateCoin userInfo={this.state} create = {this.create}/>
+        </main>
         )
     }
 }

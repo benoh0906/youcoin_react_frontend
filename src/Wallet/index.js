@@ -67,7 +67,6 @@ class Wallet extends Component{
     }
 
     render(){
-        // this.listCoins()
 
 
     return(
