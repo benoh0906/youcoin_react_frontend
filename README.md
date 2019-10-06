@@ -36,13 +36,17 @@ YouCoin records the changes in the number of subscribers of the YouTuber after t
 * API
 
 ## Setup
-Link to the Website: [YouCoin](#https://youcoin-react.herokuapp.com/)
+Link to the 
+[Website](https://https://github.com/benoh0906/) 
 
-Link to the Backend : [YouCoing Flask Backend] (#https://github.com/benoh0906/youcoin_flask_backend)
+
+
+Link to the 
+[Backend](https://github.com/benoh0906/youcoin_flask_backend)
 
 To locally install YouCoin, please download sourcescode for the backend.
 
-For the Backend, you must use your own API.
+Otherwise, feel free to explore the app at the hosted link. 
 
 
 ## Code Examples
@@ -119,11 +123,19 @@ To-do list:
 ## Status
 Project is: _in progress_
 
+
 ## Inspiration
 Project inspired by YouTube.
 
 ## Contact
-[GitHub](https://https://github.com/benoh0906/) 
 
-[LinkedIn](https://www.linkedin.com/in/jungbinoh/)
+Created by Jungbin Oh
+
+Email: benoh0906@gmail.com
+
+Social:
+
+* [GitHub](https://https://github.com/benoh0906/) 
+
+* [LinkedIn](https://www.linkedin.com/in/jungbinoh/)
 
