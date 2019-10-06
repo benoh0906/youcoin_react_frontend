@@ -200,9 +200,9 @@ class App extends Component {
 
                   <Route component={My404} />        
                 </Switch>
-            </Container>
-            </main>
-            }
+              </Container>
+              </main>
+          }
         </main>
 
     )

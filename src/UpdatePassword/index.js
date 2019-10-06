@@ -33,8 +33,6 @@ class UpdatePassword extends Component{
         console.log(err)
       })
 
-
-
     }
 
     render(){
